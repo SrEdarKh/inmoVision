@@ -1,0 +1,10 @@
+[
+{"type":"header","version":"5.2.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"insumos"},
+{"type":"table","name":"usuarios","database":"insumos","data":
+[
+{"id":"1001","nombre":"Alkosto","email":"alkosto@compras.com","telefono":"3127765423","categoria":"tecnologia"},
+{"id":"1002","nombre":"Exito","email":"grupoexito@insumos.com","telefono":"3008765678","categoria":"Aseo"}
+]
+}
+]

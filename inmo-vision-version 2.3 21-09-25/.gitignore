@@ -1,0 +1,39 @@
+# Python
+venv/
+ENV/
+env/
+.venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Django
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+*.log
+
+# Node
+node_modules/
+dist/
+build/
+
+# Env and secrets
+.env
+.env.local
+.env.* 
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# IDEs / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Git / Credentials
+.git-credentials

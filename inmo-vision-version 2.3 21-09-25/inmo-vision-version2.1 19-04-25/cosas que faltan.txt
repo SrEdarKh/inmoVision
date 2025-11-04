@@ -1,0 +1,8 @@
+cosas que faltan al codigo
+
+° login
+°que el boton de syscribirse funcione ingresando un correo x
+°agregar propiedades para ventaa.. arriendo
+°django funciona_ pero se debe vincular de forma correcta con el frontend
+(tailwind,react,css,javascript,html) frontend
+(python,django) backend
