@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'gestion_propiedades.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'propiedades',
+        'NAME': 'inmovision',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -150,3 +150,4 @@ REST_FRAMEWORK = {
 
 MEDIA_URL= '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+AUTH_USER_MODEL = 'propiedades.Usuario'
