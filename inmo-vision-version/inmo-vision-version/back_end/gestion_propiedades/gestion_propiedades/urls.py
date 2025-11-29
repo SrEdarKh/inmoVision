@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from propiedades.views import PropiedadViewSet
+from propiedades.views import PropiedadViewSet, UsuariosViewSet
 
 router = routers.DefaultRouter()
 router.register(r'propiedades', PropiedadViewSet)
+router.register(r'usuarios',UsuariosViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
