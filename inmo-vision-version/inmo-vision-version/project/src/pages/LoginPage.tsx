@@ -1,24 +1,52 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
-
 const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [correo, setCorreo] = useState("");
+  const [contrasena, setContrasena] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     document.title = "Inicio sesión | Inmo-Visión";
     window.scrollTo(0, 0);
   }, []);
 
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email !== "usuario@ejemplo.com") {
-      setError("⚠️ Revisa el dato o ingresa el teléfono asociado a tu cuenta.");
-    } else {
-      setError("");
-      alert("Inicio de sesión exitoso ✅");
+    setError("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:8000/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          correo,
+          contrasena,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setLoading(false);
+        return setError(data?.non_field_errors?.[0] || "Credenciales incorrectas");
+      }
+
+      // Si usas token o usuario, guárdalo
+      localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
+      setLoading(false);
+      navigate("/"); // Redirigir a la página principal
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+      setError("Error de conexión con el servidor.");
     }
   };
 
@@ -31,46 +59,45 @@ const LoginPage: React.FC = () => {
         </p>
 
         {/* Formulario*/}
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white p-6 rounded-lg "
-        >
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg">
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              E-mail o teléfono
+              E-mail
             </label>
             <input
-              type="text"
-              value={email}
-              id="email"
-              onChange={(e) => setEmail(e.target.value)}
-              className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none sm:text-sm ${
+              type="email"
+              value={correo}
+              onChange={(e) => setCorreo(e.target.value)}
+              className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none ${
                 error
                   ? "border-red-500 focus:border-red-500 focus:ring-red-500"
                   : "border-gray-300 focus:border-blue-500 focus:ring-blue-500"
               }`}
             />
-            {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
           </div>
+
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mt-6"
-            >
+            <label className="block text-sm font-medium text-gray-700 mt-6">
               Contraseña
             </label>
             <input
               type="password"
-              id="password"
+              value={contrasena}
+              onChange={(e) => setContrasena(e.target.value)}
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
             />
           </div>
+
+          {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 mt-6"
+            disabled={loading}
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 mt-6 disabled:bg-blue-300"
           >
-            Iniciar Sesión
+            {loading ? "Ingresando..." : "Iniciar Sesión"}
           </button>
+
           <p className="text-sm text-center mt-6">
             ¿No tienes una cuenta?{" "}
             <Link to="/register" className="text-blue-600 hover:underline">
@@ -87,10 +114,8 @@ const LoginPage: React.FC = () => {
         </div>
 
         {/* Google */}
-        <button
-          className="flex items-center justify-center w-full border border-gray-300 py-2 px-4 rounded-md shadow-sm hover:bg-gray-100 transition"
-        >
-         <span className="text-2xl mr-2">
+        <button className="flex items-center justify-center w-full border border-gray-300 py-2 px-4 rounded-md shadow-sm hover:bg-gray-100 transition">
+          <span className="text-2xl mr-2">
             <FcGoogle />
           </span>
           <span className="text-gray-700 font-medium">

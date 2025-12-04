@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-primary-100 mb-6">
-              Líderes en el mercado inmobiliario con más de 20 años de experiencia, ofreciendo las mejores propiedades y un servicio personalizado.
+              Resultado del proceso de aprendizaje y formación en el SENA. Hemos aplicado metodologías de vanguardia para crear una solución innovadora, enfocada en la excelencia y la pertinencia para el sector.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-white hover:text-accent-300 transition-colors">

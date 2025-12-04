@@ -36,7 +36,7 @@ const AboutPage: React.FC = () => {
               Conoce a Inmo-vision
             </h1>
             <p className="text-xl text-primary-100 mb-6">
-              Líderes en el mercado inmobiliario con más de 20 años de experiencia, ofreciendo las mejores propiedades y un servicio personalizado a cada cliente.
+              Fruto de la formación práctica en el SENA. Hemos transformado la teoría en una propuesta real, innovadora y orientada a la excelencia.
             </p>
           </motion.div>
         </div>
@@ -48,13 +48,13 @@ const AboutPage: React.FC = () => {
           <div>
             <h2 className="text-3xl font-serif font-bold mb-6">Nuestra Historia</h2>
             <p className="text-neutral-700 mb-4">
-            Inmo-vision nació en 2003 con la visión de transformar la experiencia inmobiliaria en Colombia. Fundada por un equipo de profesionales apasionados por el sector, nuestra empresa comenzó como una pequeña oficina en Medellin y ha crecido hasta convertirse en un referente nacional.
+            Inmo-Vision no nació en una oficina, sino en un aula del SENA, en el año 2024. Como aprendices, identificamos la necesidad de modernizar la búsqueda y gestión inmobiliaria, dándonos cuenta de que la tecnología podía hacer el proceso más claro, rápido y accesible para todos.
             </p>
             <p className="text-neutral-700 mb-4">
-              A lo largo de estos años, hemos ayudado a miles de familias a encontrar el hogar de sus sueños y a inversores a desarrollar proyectos exitosos. Nuestra filosofía se basa en la transparencia, la excelencia y el compromiso con cada cliente.
+              El proyecto fue impulsado por la visión de un equipo de futuros profesionales comprometidos con aplicar lo aprendido para resolver un problema real. Inicialmente, fue un reto académico centrado en el desarrollo de nuestra primera plataforma digital.
             </p>
             <p className="text-neutral-700">
-              Hoy, con presencia en las principales ciudades, aplicando a la tecnologia digital, seguimos fieles a nuestros valores originales, combinando la experiencia acumulada con las últimas tecnologías para ofrecer un servicio inmobiliario de primer nivel.
+              Hoy, Inmo-Vision es el testimonio de nuestro proceso formativo. Combina la experiencia de aprendizaje con las últimas tendencias tecnológicas, demostrando cómo la educación puede convertirse en una solución de primer nivel.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">

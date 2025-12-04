@@ -1,40 +1,53 @@
-export interface Property {
+export interface Propiedad {
   id: number;
-  title: string;
-  description: string;
-  price: number;
-  area: number;
-  bedrooms: number;
-  bathrooms: number;
-  propertyType: 'house' | 'apartment' | 'office' | 'land';
-  listingType: 'sale' | 'rent';
-  address: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  mainImage: string;
-  images: string[];
-  featured: boolean;
-  createdAt: string;
-  updatedAt: string;
+  titulo: string;
+  descripcion: string;
+  precio: string;      // DecimalField → string
+  habitaciones: string;
+  banos: string;
+  municipio: string;
+  ciudad: string;
+  barrio: string;
+  direccion: string;
+
+  tipo_negocio: "COMP" | "ARR";
+  tipo_propiedad: "CASA" | "APARTAMENTO" | "LOTE" | "LOCAL";
+
+  main_image: string | null;
+
+  agente: Agente | null;
+
+  imagenes: ImagenPropiedad[];
 }
 
-export interface Agent {
+export interface ImagenPropiedad {
   id: number;
-  name: string;
-  email: string;
-  phone: string;
-  photo: string;
-  bio: string;
+  foto_propiedad: string;
 }
 
-export interface PropertyFilter {
-  propertyType?: string;
-  listingType?: string;
-  minPrice?: number;
-  maxPrice?: number;
-  minBedrooms?: number;
-  minBathrooms?: number;
-  minArea?: number;
-  city?: string;
+export interface Agente {
+  id: number;
+  nombre: string;
+  apellido: string;
+  correo: string;
+  telefono?: string;
+  foto?: string;
+}
+
+
+export interface Usuario {
+  id: number;
+  nombre: string;
+  apellido: string;
+  correo: string;
+  foto_perfil: string | null;
+  username: string;
+}
+
+export interface PropiedadFilter {
+  tipo_negocio?: "COMP" | "ARR";
+  tipo_propiedad?: "CASA" | "APARTAMENTO" | "LOTE" | "LOCAL";
+  ciudad?: string;
+  minPrecio?: number;
+  maxPrecio?: number;
 }

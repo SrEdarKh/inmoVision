@@ -24,24 +24,34 @@ const Register: React.FC = () => {
     }
 
     try {
-      // const API = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000/api/";fetch(`${API}register`, {
-      const response = await fetch("http://localhost:4000/api/register", {
+      const API = "http://127.0.0.1:8000/api/register/";
+
+      const response = await fetch(API, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, telephone, email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre: name,
+          telefono: telephone,
+          correo: email,
+          contrasena: password,
+        }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const data = await response.json();
-        setError(data.message || " Error en el registro.");
+        setError(data?.message || "Error en el registro.");
         return;
       }
 
-      alert(" Registro exitoso. Ahora puedes iniciar sesión.");
+      alert("Registro exitoso 😊 Ahora puedes iniciar sesión.");
       navigate("/login");
+
     } catch (err) {
       console.error(err);
-      setError(" Error al conectar con el servidor.");
+      setError("Error al conectar con el servidor.");
     }
   };
 
@@ -51,72 +61,64 @@ const Register: React.FC = () => {
         <h1 className="text-2xl font-bold mb-4 text-center">
           Llena tus datos para crear una cuenta
         </h1>
+
         <form onSubmit={handleSubmit} className="bg-white space-y-4">
+
           {error && <p className="text-red-600 text-sm">{error}</p>}
 
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700">
               Nombre Completo
             </label>
             <input
               type="text"
-              id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none sm:text-sm"
+              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="telephone" className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700">
               Número de celular
             </label>
             <input
               type="tel"
-              id="telephone"
               value={telephone}
               onChange={(e) => setTelephone(e.target.value)}
-              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none sm:text-sm"
+              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700">
               Correo electrónico
             </label>
             <input
               type="email"
-              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none sm:text-sm"
+              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700">
               Contraseña
             </label>
             <input
               type="password"
-              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none sm:text-sm"
+              className="mt-1 block w-full rounded-md border px-3 py-2 shadow-sm"
             />
           </div>
 
           <p className="text-xs text-center text-gray-500">
             Al registrarte, aceptas nuestros{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              Términos y condiciones
-            </a>, la{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              Política de privacidad
-            </a> y la{" "}
-            <a href="#" className="text-blue-600 hover:underline">
-              Política de cookies
-            </a>.
+            <a className="text-blue-600 hover:underline">Términos</a>,{" "}
+            <a className="text-blue-600 hover:underline">Privacidad</a> y{" "}
+            <a className="text-blue-600 hover:underline">Cookies</a>.
           </p>
 
           <button
